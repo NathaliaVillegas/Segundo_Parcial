@@ -29,7 +29,6 @@ def load_data(folder):
 
     return np.array(X), np.array(y)
 
-print("Cargando dataset...")
 
 X_train, y_train = load_data("dataset_split/train")
 X_test, y_test = load_data("dataset_split/test")
@@ -40,7 +39,6 @@ print(X_train.shape, X_test.shape)
 model = keras.Sequential([
     layers.Input(shape=(224, 224, 3)),
 
-    # augmentation (CLAVE)
     layers.RandomFlip("horizontal"),
     layers.RandomRotation(0.1),
     layers.RandomZoom(0.1),
