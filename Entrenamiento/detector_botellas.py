@@ -2,10 +2,6 @@ import cv2
 import numpy as np
 import tensorflow as tf
 
-# =========================================
-# CONFIG
-# =========================================
-
 MODEL_PATH = "bebidas_model.keras"
 
 class_names = [
@@ -15,15 +11,9 @@ class_names = [
     "salvietti"
 ]
 
-# =========================================
-# MODELO
-# =========================================
 
 model = tf.keras.models.load_model(MODEL_PATH)
 
-# =========================================
-# CAMARA
-# =========================================
 
 url = "http://192.168.26.2:8080/video"
 cap = cv2.VideoCapture(url)
@@ -33,9 +23,6 @@ cv2.namedWindow(
     cv2.WINDOW_NORMAL
 )
 
-# =========================================
-# PREPROCESS
-# =========================================
 
 def preprocess(img):
 
@@ -47,9 +34,6 @@ def preprocess(img):
 
     return img
 
-# =========================================
-# LOOP
-# =========================================
 
 while True:
 
@@ -60,9 +44,6 @@ while True:
 
     display = cv2.rotate(frame, cv2.ROTATE_90_CLOCKWISE)
 
-    # =========================================
-    # DETECCION DE OBJETO
-    # =========================================
 
     gray = cv2.cvtColor(
         frame,
@@ -89,9 +70,6 @@ while True:
 
     object_detected = False
 
-    # =========================================
-    # BUSCAR CONTORNO GRANDE
-    # =========================================
 
     for cnt in contours:
 
@@ -103,9 +81,6 @@ while True:
             object_detected = True
             break
 
-    # =========================================
-    # SOLO SI HAY OBJETO
-    # =========================================
 
     if object_detected:
 
@@ -149,9 +124,6 @@ while True:
             2
         )
 
-    # =========================================
-    # MOSTRAR
-    # =========================================
 
     cv2.imshow(
         "Detector",
@@ -163,9 +135,6 @@ while True:
     if key == ord('q'):
         break
 
-# =========================================
-# LIBERAR
-# =========================================
 
 cap.release()
 cv2.destroyAllWindows()

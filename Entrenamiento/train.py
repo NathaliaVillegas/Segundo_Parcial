@@ -36,7 +36,6 @@ X_test, y_test = load_data("dataset_split/test")
 
 print(X_train.shape, X_test.shape)
 
-# 🔥 MODELO MEJORADO (con generalización)
 
 model = keras.Sequential([
     layers.Input(shape=(224, 224, 3)),

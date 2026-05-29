@@ -1,0 +1,4 @@
+coca: 1
+fanta: 1
+pepsi: 0
+salvietti: 1
